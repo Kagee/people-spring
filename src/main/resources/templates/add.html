@@ -5,6 +5,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <p th:text="'Type = ' + ${req}" />
+
+<p th:if="${posted}" th:text="'Post succesfull'" />
+ 
+<form th:action="@{/add}" th:object="${person}" method="POST">
+<input type="text" th:field="*{name}" />
+<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name must be between x and y characters</p>
+<input type="submit" th:value="#{form.submit}" />
+</form>
 </body>
 </html>
